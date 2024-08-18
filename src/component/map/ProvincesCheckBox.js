@@ -3,7 +3,7 @@ import provincesData from "./data-provinces.json";
 import "./scss/provincesCheckBox.scss";
 import MapTravel from "./MapTravel";
 
-const ProvincesCheckBox = () => {
+const ProvincesCheckBox = (props) => {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const provinces = Object.values(provincesData.data).sort((a, b) =>
     a.title.localeCompare(b.title)
@@ -19,16 +19,15 @@ const ProvincesCheckBox = () => {
     const isChecked = e.target.checked;
     setSelectedCheckboxes((prevSelected) => {
       if (!isChecked) {
-        // Nếu item đã có trong danh sách và checkbox được bỏ chọn, loại bỏ nó
-        return prevSelected.filter((selectedItem) => selectedItem.key !== item.key);
+        return prevSelected.filter(
+          (selectedItem) => selectedItem.key !== item.key
+        );
       } else {
-        // Nếu checkbox được chọn, thêm item vào danh sách
         return [...prevSelected, item];
       }
     });
   };
-  
- 
+
   return (
     <>
       <div className="province-grid">
