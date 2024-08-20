@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import Tooltip from "./Tooltip";
 import "./scss/mapTravel.scss";
-const MapTravel = ({selectedCheckboxes}) => {
-
-  const [selectedProvinces, setSelectedProvinces] = useState(selectedCheckboxes);
+const MapTravel = () => {
   const [tooltip, setTooltip] = useState({
     display: "none",
     title: "",
@@ -40,7 +38,6 @@ const MapTravel = ({selectedCheckboxes}) => {
       }));
     }
   };
-
 
   return (
     <div className="map_vn" id="map_vn">
