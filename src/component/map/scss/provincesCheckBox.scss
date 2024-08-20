@@ -1,0 +1,18 @@
+.province-grid {
+  display: flex;
+  gap: 10px;
+  width: 50%;
+  border: solid 1px;
+  position:  absolute;
+  top: 100px;
+  left: 100px;
+}
+
+.province-column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  .checkbox-province >label:hover, input:hover{
+    cursor: pointer;
+  }
+}
