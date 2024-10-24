@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Tooltip from "./Tooltip";
 import "./scss/mapTravel.scss";
 import AnGiang from "./map-province/AnGiang";
@@ -63,8 +63,11 @@ import VinhLong from "./map-province/VinhLong";
 import VinhPhuc from "./map-province/VinhPhuc";
 import VungTau from "./map-province/VungTau";
 import YenBai from "./map-province/YenBai";
+import NgheAn from "./map-province/NgheAn";
+import QuanDaoHoangSa from "./map-province/QuanDaoHoangSa";
+import QuanDaoTruongSa from "./map-province/QuanDaoTruongSa";
 
-const MapTravel = () => {
+const MapTravel = (props) => {
   const [tooltip, setTooltip] = useState({
     display: "none",
     title: "",
@@ -76,11 +79,13 @@ const MapTravel = () => {
     const target = event.target;
     if (target && target.tagName === "path" && target.id.startsWith("VN-")) {
       const title = target.getAttribute("data-title");
-      setTooltip((prevTooltip) => ({
-        ...prevTooltip,
+      setTooltip({
+        ...tooltip,
         display: "block",
-        title,
-      }));
+        title: title,
+        left: event.pageX,
+        top: event.pageY,
+      });
     }
   };
 
@@ -95,10 +100,10 @@ const MapTravel = () => {
   const handleMouseOut = (event) => {
     const target = event.target;
     if (target && target.tagName === "path" && target.id.startsWith("VN-")) {
-      setTooltip((prevTooltip) => ({
-        ...prevTooltip,
+      setTooltip({
+        ...tooltip,
         display: "none",
-      }));
+      });
     }
   };
 
@@ -121,7 +126,7 @@ const MapTravel = () => {
           onMouseMove={handleMouseMove}
           onMouseOut={handleMouseOut}
         >
-          <AnGiang />
+          <AnGiang data={props.selectedCheckboxes} />
           <BacGiang />
           <BacKan />
           <BacLieu />
@@ -162,6 +167,7 @@ const MapTravel = () => {
           <NamDinh />
           <NinhBinh />
           <NinhThuan />
+          <NgheAn />
           <PhuTho />
           <PhuYen />
           <QuangBinh />
@@ -183,6 +189,8 @@ const MapTravel = () => {
           <VinhPhuc />
           <VungTau />
           <YenBai />
+          <QuanDaoHoangSa />
+          <QuanDaoTruongSa />
         </g>
       </svg>
     </div>
