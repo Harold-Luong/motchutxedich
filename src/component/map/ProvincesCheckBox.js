@@ -8,7 +8,7 @@ const ProvincesCheckBox = (props) => {
   const provinces = Object.values(provincesData.data).sort((a, b) =>
     a.title.localeCompare(b.title)
   );
-  const columnCount = 5;
+  const columnCount = 4;
   const itemsPerColumn = Math.ceil(provinces.length / columnCount);
 
   const columns = Array.from({ length: columnCount }, (_, colIndex) =>
